@@ -9,7 +9,7 @@ const MemeItem = ({ meme}) => {
       <div className="card z-depth-5">
         <div className="card-image">
             <Link to={`/meme/${meme.id}`} >
-          <img src={meme.url} alt={meme.name}  style={{minHeight:'200px',maxHeight:'500px'}}/>
+          <img src={meme.url} alt={meme.name}  style={{maxHeight:'500px'}}/>
             </Link>
         </div>
         <div className="card-content">

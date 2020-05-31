@@ -4,10 +4,18 @@ import Preloader from "../layout/Preloader";
 import axios from "axios";
 import M from "materialize-css/dist/js/materialize.min.js";
 import NewMeme from "./NewMeme";
+// let username;
+// let password;
+// if (process.env.NODE_ENV !== "production") {
+//   username = process.env.REACT_APP_IMGFLIP_USERNAME;
+//   password = process.env.REACT_APP_IMGFLIP_PASSWORD;
+// } else {
+//   username = process.env.IMGFLIP_USERNAME;
+//   password = process.env.IMGFLIP_PASSWORD;
+// }
 
 const Meme = ({ match }) => {
   let redirect = null;
-  let urlSet = false;
   const stringigy = (urlParams) => {
     const params = Object.entries(urlParams).map(
       ([key, value]) => `${key}=${value}`
@@ -25,16 +33,22 @@ const Meme = ({ match }) => {
   for (let m of memes) {
     if (m.id === match.params.id) meme = m;
   }
-
+//eslint-disable-next-line
   const [box1, setbox1] = useState("");
+  //eslint-disable-next-line
   const [box2, setbox2] = useState("");
+  //eslint-disable-next-line
   const [box3, setbox3] = useState("");
+  //eslint-disable-next-line
   const [box4, setbox4] = useState("");
+  //eslint-disable-next-line
+  const [box5, setbox5] = useState("");
   if (meme === undefined) {
     return <Preloader />;
   }
   const { url, name, width, height, box_count } = meme;
   const onChange = (e) => {
+    //eslint-disable-next-line
     let t = eval("set" + e.target.id);
     t(e.target.value);
   };
@@ -47,8 +61,8 @@ const Meme = ({ match }) => {
 
     const urlParams = {
       template_id: match.params.id,
-      username: process.env.REACT_APP_IMGFLIP_USERNAME,
-      password: process.env.REACT_APP_IMGFLIP_PASSWORD,
+      username:'codewithak1',
+      password:'codewithak1',
     };
     let urlString = stringigy(urlParams);
     let u = "https://api.imgflip.com/caption_image" + urlString;
@@ -58,7 +72,6 @@ const Meme = ({ match }) => {
     u += `&boxes[4][text]=${box4}`;
     const res = await axios.post(u);
     redirect = res.data.data.url;
-    console.log(redirect);
     setUrl(redirect);
   };
   let str = [];
@@ -72,7 +85,9 @@ const Meme = ({ match }) => {
             id={`box${i + 1}`}
             type="text"
             className="validate"
+            //eslint-disable-next-line
             value={eval(b)}
+            //eslint-disable-next-line
             name={eval(b)}
             onChange={onChange}
           />
@@ -96,7 +111,7 @@ const Meme = ({ match }) => {
                 minWidth: { width },
               }}
             /> */}
-            <NewMeme url={url} name={name} height = {height} width={width}/>
+            <NewMeme url={url} name={name} height={height} width={width} />
           </div>
 
           <div className="card-content blue lighten-2">
@@ -110,17 +125,17 @@ const Meme = ({ match }) => {
           {str.map((s) => (
             <div key={key++}>{s}</div>
           ))}
-            <button
-              className="btn waves-effect waves-light blue"
-              type="submit"
-              name="action"
-              onClick={onClick}
-            >
-              Submit
-              <i className="material-icons right">send</i>
-            </button>
-            <br></br>
-            <br></br>
+          <button
+            className="btn waves-effect waves-light blue"
+            type="submit"
+            name="action"
+            onClick={onClick}
+          >
+            Submit
+            <i className="material-icons right">send</i>
+          </button>
+          <br></br>
+          <br></br>
         </form>
       </div>
     </div>

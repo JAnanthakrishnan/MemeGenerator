@@ -3,7 +3,7 @@ import "materialize-css/dist/css/materialize.min.css";
 import M from "materialize-css/dist/js/materialize.min.js";
 // import Memes from "./components/Memes/Memes";
 // import SearchBar from "./components/layout/SearchBar";
-import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import { Switch, Route ,HashRouter} from "react-router-dom";
 import Home from "./components/Pages/Home";
 import About from "./components/Pages/About";
 import Meme from "./components/Memes/Meme";
@@ -20,7 +20,7 @@ function App() {
 
   return (
     <MemeState>
-      <Router>
+      <HashRouter>
       <SearchBar/>
         <div className="teal lighten-2">
           <Switch>
@@ -28,9 +28,10 @@ function App() {
             <Route exact path="/about" component={About} />
             <Route exact path="/meme/:id" component={Meme} />{" "}
             <Route exact path="/meme/new" component={NewMeme} />{" "}
+            <Route component={Home}/>
           </Switch>
         </div>
-      </Router>
+      </HashRouter>
     </MemeState>
   );
 }
