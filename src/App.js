@@ -1,25 +1,37 @@
-import React from 'react';
-import logo from './logo.svg';
-import './App.css';
+import React, { useEffect } from "react";
+import "materialize-css/dist/css/materialize.min.css";
+import M from "materialize-css/dist/js/materialize.min.js";
+// import Memes from "./components/Memes/Memes";
+// import SearchBar from "./components/layout/SearchBar";
+import { BrowserRouter as Router, Switch, Route } from "react-router-dom";
+import Home from "./components/Pages/Home";
+import About from "./components/Pages/About";
+import Meme from "./components/Memes/Meme";
+import MemeState from "./context/meme/memeState";
+import NewMeme from "./components/Memes/NewMeme"
+import "./App.css";
+import SearchBar from "./components/layout/SearchBar";
 
 function App() {
+  useEffect(() => {
+    //Init materialize js
+    M.AutoInit();
+  });
+
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <MemeState>
+      <Router>
+      <SearchBar/>
+        <div className="teal lighten-2">
+          <Switch>
+            <Route exact path="/" component={Home} />
+            <Route exact path="/about" component={About} />
+            <Route exact path="/meme/:id" component={Meme} />{" "}
+            <Route exact path="/meme/new" component={NewMeme} />{" "}
+          </Switch>
+        </div>
+      </Router>
+    </MemeState>
   );
 }
 
