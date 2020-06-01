@@ -4,15 +4,15 @@ import Preloader from "../layout/Preloader";
 import axios from "axios";
 import M from "materialize-css/dist/js/materialize.min.js";
 import NewMeme from "./NewMeme";
-// let username;
-// let password;
-// if (process.env.NODE_ENV !== "production") {
-//   username = process.env.REACT_APP_IMGFLIP_USERNAME;
-//   password = process.env.REACT_APP_IMGFLIP_PASSWORD;
-// } else {
-//   username = process.env.IMGFLIP_USERNAME;
-//   password = process.env.IMGFLIP_PASSWORD;
-// }
+let username;
+let password;
+if (process.env.NODE_ENV !== "production") {
+  username = process.env.REACT_APP_IMGFLIP_USERNAME;
+  password = process.env.REACT_APP_IMGFLIP_PASSWORD;
+} else {
+  username = process.env.IMGFLIP_USERNAME;
+  password = process.env.IMGFLIP_PASSWORD;
+}
 
 const Meme = ({ match }) => {
   let redirect = null;
@@ -61,8 +61,8 @@ const Meme = ({ match }) => {
 
     const urlParams = {
       template_id: match.params.id,
-      username:'codewithak1',
-      password:'codewithak1',
+      username,
+      password,
     };
     let urlString = stringigy(urlParams);
     let u = "https://api.imgflip.com/caption_image" + urlString;

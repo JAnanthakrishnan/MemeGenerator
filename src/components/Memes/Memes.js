@@ -5,9 +5,10 @@ import MemeContext from "../../context/meme/memeContext";
 
 const Memes = () => {
   const memeContext = useContext(MemeContext);
-  const { loading, memes, getMemes } = memeContext;
+  const { loading, memes, getMemes,setUrl } = memeContext;
   useEffect(() => {
     getMemes();
+    setUrl('')
     //eslint-disable-next-line
   }, []);
   // const [memes, setMemes] = useState([]);
