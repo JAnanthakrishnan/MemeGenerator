@@ -1,5 +1,5 @@
 The project is deployed on 
-### 'memeswithak.netlify.app'
+### https://memeswithak.netlify.app/
 
 In the project directory, you can run:
 
